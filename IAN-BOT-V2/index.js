@@ -41,12 +41,18 @@ function getGroupSettings(chatId) {
   return data.groups[chatId];
 }
 
+const puppeteerOptions = {
+  headless: true,
+  args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
+};
+
+if (process.env.PUPPETEER_EXECUTABLE_PATH) {
+  puppeteerOptions.executablePath = process.env.PUPPETEER_EXECUTABLE_PATH;
+}
+
 const client = new Client({
   authStrategy: new LocalAuth({ clientId: 'ian-bot-v2' }),
-  puppeteer: {
-    headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
-  }
+  puppeteer: puppeteerOptions
 });
 
 function menu() {
@@ -156,9 +162,7 @@ client.on('message', async message => {
     const args = parts;
 
     if (command === 'menu' || command === 'help') return message.reply(menu());
-
     if (command === 'ping') return message.reply('🏓 *PONG!* IAN BOT V2 is working.');
-
     if (command === 'about') return message.reply(`🤖 *${BOT_NAME} V2*\n\nWhatsApp group/personal assistant bot.\nStatus: 🟢 Online`);
 
     if (command === 'time') {

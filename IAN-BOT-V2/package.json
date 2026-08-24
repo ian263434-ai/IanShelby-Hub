@@ -1,0 +1,17 @@
+{
+  "name": "ian-bot-v2",
+  "version": "2.0.0",
+  "description": "IAN BOT V2 - WhatsApp automation bot with menus, group features, welcome messages and custom replies.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "^1.34.2"
+  }
+}
